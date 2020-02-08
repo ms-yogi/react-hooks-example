@@ -29,6 +29,11 @@
     font-size: 14px;
     border-radius: 2px;
     font-size: 16px;
+    transition: all 0.2s;
+}
+.showMore:hover {
+    background: #ccc;
+    cursor: pointer;
 }
 .profile {
     border-radius: 50%;

@@ -14,3 +14,22 @@ body {
   width: 95%;
   margin: 0 auto;
 }
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 2rem auto 1rem;
+}
+
+.gitlink{
+  margin: 1rem;
+  text-align: center;
+}
+.gitlink a, a:visited {
+  color: #f2f2f2;
+  transition: all 0.2s;
+}
+
+.gitlink a:hover {
+  color: #ccc;
+}
