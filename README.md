@@ -8,6 +8,7 @@ This project is created using `create-react-app`. This is just a practice projec
 - Add lazy loading to the component
 - Add light and dark theme 
 - Add custom no of users list from input
+- Add lazy loading on scroll
 
 ### Demo
 

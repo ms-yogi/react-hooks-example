@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import './list.css';
 import Loader from '../Loader/Loader';
 
-const List = (props) => {
+const List = () => {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        fetch(`https://randomuser.me/api/?page=${props.pageNo}&results=6`)
+        fetch(`https://randomuser.me/api/?page=${page}&results=5`)
         .then(resp => resp.json())
         .then(data => {
             setUsers(users => [...users, ...data.results]);
             setLoading(false);
         })
         .catch(error => console.log("error: ", error))
-    }, [props.pageNo])
+    }, [page])
 
     const deleteUser = (uuid) => {
         let userList = users.filter(user => (
@@ -39,6 +40,7 @@ const List = (props) => {
                             </div>
                         )
                     })}
+                    <button onClick={() => setPage(page + 1)} className="showMore">Show more</button>
                 </div> : <Loader/>}  
         </>
      );

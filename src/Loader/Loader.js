@@ -1,9 +1,11 @@
 import React from 'react';
+import './loader.css';
 
 const Loader = () => {
     return ( 
-        <div style={{padding: '1rem', boxShadow: 'rgba(0, 0, 0, 0.2) 0px 10px 18px 0px', borderRadius: '3px', background: '#dcdcdc', width: '10%', margin: '5rem auto', textAlign: 'center'}}>
-            <h4 style={{color: '#2a2a2a', margin: 0}}>Loading...</h4>
+        <div className='loaderStyle'>
+            <span className='circle'></span>
+            <h4 className='loading'>Loading...</h4>
         </div>
     );
 }

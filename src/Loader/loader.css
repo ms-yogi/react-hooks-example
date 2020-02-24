@@ -1,0 +1,30 @@
+.loaderStyle {
+    width: 10%;
+    margin: 5rem auto;
+    text-align: center;
+}
+
+.circle {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #bbb;
+    border-top-color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+}
+
+.loading {
+    display: inline-block;
+    color: #ccc;
+    padding: 10px;
+    margin: 0;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
