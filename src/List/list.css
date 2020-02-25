@@ -40,16 +40,33 @@
     display: block;
     margin: 10px auto;
     border: 1px solid #f2f2f2;
+    max-width: 100px;
+}
+.details {
+    display: flex;
+    justify-content: space-around;
+}
+.repo {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 28px;
+    margin: 10px;
+    display: inline-block;
 }
 .name {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     display: block;
+    margin: 1rem 0 0;
 }
 
-p {
-    margin: 5px 0;
+.gitUrl {
+    color: #ccc;
+}
+.username {
+    font-size: 32px;
+    margin: 0;
 }
 
 .loading {
