@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './list.css';
 import Loader from '../Loader/Loader';
 
-const List = () => {
+const List = (props) => {
     const [userDetails, setUserDetails] = useState([])
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [error, setError] = useState("")
-    const [since, setSince] = useState(22020)
+    const [since, setSince] = useState(props.id)
+    const [perPage, setPerPage] = useState(props.count)
 
     useEffect(() => {
         async function getUsers() {
-            let usersList = await fetch(`https://api.github.com/users?page=${page}&per_page=6&since=${since}`)
+            console.log("page: ", page , " perpage: ", perPage, " since:", since)
+            let usersList = await fetch(`https://api.github.com/users?page=${page}&per_page=${perPage}&since=${since}`)
             .then(resp => resp.json())
             .then(data => {
                 return data;
@@ -31,7 +33,14 @@ const List = () => {
             setLoading(false);
         }
         getUsers();
-    }, [page, since])
+    }, [page, perPage, since])
+
+    useEffect(() => {
+        setSince(props.id);
+        setPerPage(props.count);
+        setUserDetails([]);
+        setLoading(true);
+    }, [props.id, props.count])
 
     const deleteUser = (id) => {
         let userList = userDetails.filter(user => (
@@ -56,6 +65,7 @@ const List = () => {
                                     <span className="username name">{user.login}</span>
                                     <img src={user.avatar_url} alt="profile" className="profile" />
                                     <span className="name">{user.name ? user.name : "User"}</span>
+                                    <span className="name">{user.id}</span>
                                     <div className="details">
                                         <span className="repo">Public Repos : {user.public_repos}</span>
                                         <span className="repo">Followers : {user.followers}</span>
@@ -68,7 +78,7 @@ const List = () => {
                             <button
                                 onClick={() => {
                                     setPage(page + 1)
-                                    setSince(since => since + 6)
+                                    setSince(since => since + 1)
                                 }}
                                 className="showMore">Show more</button>
                         </div> : <p>{error}</p>

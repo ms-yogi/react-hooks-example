@@ -38,3 +38,23 @@ body {
 .themeButton:focus {
   outline: none;
 }
+
+.textInput {
+  margin-right: 20px;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.showButton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  color: #fff;
+  background: #28a745;
+}
+
+form {
+  margin: 1rem;
+}
