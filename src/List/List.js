@@ -48,6 +48,14 @@ const List = (props) => {
         ));
         setUserDetails(userList);
     }
+
+    window.onscroll = () => {
+        if (
+            window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight
+        ) {
+            setSince(userDetails[(userDetails.length - 1)].id)
+        }
+    }
     return ( 
         <>
             {!loading ?
@@ -78,7 +86,7 @@ const List = (props) => {
                             <button
                                 onClick={() => {
                                     setPage(page + 1)
-                                    setSince(since => since + 1)
+                                    setSince(userDetails[(userDetails.length - 1)].id)
                                 }}
                                 className="showMore">Show more</button>
                         </div> : <p>{error}</p>

@@ -7,7 +7,7 @@ const LazyLoadedList = React.lazy(() => import('./List/List'))
 function App() {
   const [darktheme, isDarkTheme] = useState(true)
   const [id, setId] = useState(10000)
-  const [count, setCount] = useState(6)
+  const [count, setCount] = useState(3)
   const idEl = useRef(null);
   const countEl = useRef(null);
 
@@ -22,8 +22,8 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setId(Number.parseInt(idEl.current.value));
-    setCount(Number.parseInt(countEl.current.value));
+    setId(Number.parseInt(idEl.current.value) || id);
+    setCount(Number.parseInt(countEl.current.value) || count);
   }
 
   return (
