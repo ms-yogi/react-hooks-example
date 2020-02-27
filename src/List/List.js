@@ -4,18 +4,21 @@ import Loader from '../Loader/Loader';
 
 const List = (props) => {
     const [userDetails, setUserDetails] = useState([])
+    const [allUsers, setallUsers] = useState([])
     const [loading, setLoading] = useState(true)
-    const [page, setPage] = useState(1)
     const [error, setError] = useState("")
     const [since, setSince] = useState(props.id)
     const [perPage, setPerPage] = useState(props.count)
 
     useEffect(() => {
         async function getUsers() {
-            console.log("page: ", page , " perpage: ", perPage, " since:", since)
-            let usersList = await fetch(`https://api.github.com/users?page=${page}&per_page=${perPage}&since=${since}`)
+            let usersList = await fetch(`https://api.github.com/users?page=1&per_page=${perPage}&since=${since}`)
             .then(resp => resp.json())
             .then(data => {
+                data.sort(function (a, b) {
+                    return a.id - b.id
+                })
+                setallUsers(data)
                 return data;
             })
                 .catch(error => setError(error))
@@ -33,7 +36,7 @@ const List = (props) => {
             setLoading(false);
         }
         getUsers();
-    }, [page, perPage, since])
+    }, [perPage, since])
 
     useEffect(() => {
         setSince(props.id);
@@ -53,7 +56,7 @@ const List = (props) => {
         if (
             window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight
         ) {
-            setSince(userDetails[(userDetails.length - 1)].id)
+            setSince(allUsers[(allUsers.length - 1)].id)
         }
     }
     return ( 
@@ -83,13 +86,7 @@ const List = (props) => {
                                 </div>
                             )
                         })}
-                            <button
-                                onClick={() => {
-                                    setPage(page + 1)
-                                    setSince(userDetails[(userDetails.length - 1)].id)
-                                }}
-                                className="showMore">Show more</button>
-                        </div> : <p>{error}</p>
+                    </div> : <p>{error}</p>
                 )
                  : <Loader />}  
         </>
